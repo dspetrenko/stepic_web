@@ -10,7 +10,7 @@ def wsgi_app(environ, start_response):
     start_response(status, headers)
 
     query_string = environ.get('QUERY_STRING')
-    print(query_string)
+    # print(query_string)
 
-    return []
+    return (query_string.replace('&', '\n').encode(),)
 

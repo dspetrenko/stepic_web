@@ -37,3 +37,10 @@ class Question(models.Model):
     rating = models.IntegerField()
     author = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     likes = models.ManyToManyField(User)
+
+
+class Answer(models.Model):
+    text = models.TextField()
+    added_at = models.DateField()
+    question = models.ForeignKey(to=Question, on_delete=models.DO_NOTHING)
+    author = models.ForeignKey(to=User, on_delete=models.DO_NOTHING)

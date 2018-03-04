@@ -35,5 +35,5 @@ class Question(models.Model):
     text = models.TextField()
     added_at = models.DateField()
     rating = models.IntegerField()
-    author = User
-    likes = User
+    author = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    likes = models.ManyToManyField(User)

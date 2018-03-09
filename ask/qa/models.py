@@ -30,6 +30,7 @@ popular - метод возвращающий вопросы отсортиро�
 
 
 class Question(models.Model):
+    objects = QuestionManager()
 
     title = models.CharField()
     text = models.TextField()
@@ -37,6 +38,14 @@ class Question(models.Model):
     rating = models.IntegerField()
     author = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     likes = models.ManyToManyField(User)
+
+
+class QuestionManager(models.Manager):
+    def new(self):
+        return super().get_queryset().order_by('-added_at')
+
+    def popular(self):
+        return super().get_queryset().order_by('-rating')
 
 
 class Answer(models.Model):

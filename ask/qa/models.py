@@ -45,7 +45,7 @@ class Question(models.Model):
     added_at = models.DateField()
     rating = models.IntegerField()
     author = models.OneToOneField(User, on_delete=models.DO_NOTHING)
-    likes = models.ManyToManyField(User)
+    likes = models.ManyToManyField(User, related_name='like_user')
 
 
 class Answer(models.Model):

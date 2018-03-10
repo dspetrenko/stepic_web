@@ -102,3 +102,6 @@ ENV/
 
 # IDE: PyCharm by ds
 .idea/*
+
+# Database: SQlite by ds
+*.sqlite3

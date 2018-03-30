@@ -1,10 +1,11 @@
 from django.urls import path
 
 from .views import test
+from .views import main
 
 
 urlpatterns = [
-    path('', test),
+    path('', main),
     path('login/', test),
     path('signup/', test),
     path('question/<int:id>/', test),

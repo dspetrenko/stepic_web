@@ -21,5 +21,5 @@ def popular(request):
     return HttpResponse('OK\tpage={}'.format(page))
 
 
-def queation(request, id):
+def question(request, id):
     return HttpResponse('OK')

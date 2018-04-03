@@ -3,7 +3,7 @@ from django.urls import path
 from .views import test
 from .views import main
 from .views import popular
-from .views import queation
+from .views import question
 
 
 urlpatterns = [
@@ -11,7 +11,7 @@ urlpatterns = [
     path('popular/', popular),
     path('login/', test),
     path('signup/', test),
-    path('question/<int:id>/', queation),
+    path('question/<int:id>/', question),
     path('ask/', test),
     path('popular/', test),
     path('new/', test),

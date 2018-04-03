@@ -13,3 +13,9 @@ def main(request):
     page = request.GET.get('page')
 
     return HttpResponse('OK\tpage={}'.format(page))
+
+
+def popular(request):
+    page = request.GET.get('page')
+
+    return HttpResponse('OK\tpage={}'.format(page))

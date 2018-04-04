@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator
 
 from .models import Question as Q
+from .models import Answer as A
 
 
 def test(request, *args, **kwargs):
@@ -45,5 +46,6 @@ def question(request, question_id):
     q = get_object_or_404(Q, id=int(question_id))
     context = {
         'question': q,
+        'answers': A.objects.filter(question=q)
     }
     return render(request, 'question.html', context=context)

@@ -13,7 +13,7 @@ def test(request, *args, **kwargs):
 
 
 def main(request):
-    page_number = request.GET.get('page', 1)
+    page_number = int(request.GET.get('page', 1))
 
     qul = Q.objects.new()
 
@@ -28,7 +28,7 @@ def main(request):
 
 
 def popular(request):
-    page_number = request.GET.get('page', 1)
+    page_number = int(request.GET.get('page', 1))
 
     limit = 10
     paginator = Paginator(Q.objects.popular(), limit)

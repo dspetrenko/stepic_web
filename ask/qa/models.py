@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 from django.urls import reverse
 
-from.views import question
 # Create your models here.
 """
 4) В вашем приложении qa  в файле models.py определите следующие модели обладающие следующими полями (названия моделей и полей важны!)
@@ -52,8 +51,8 @@ class Question(models.Model):
     likes = models.ManyToManyField(User, related_name='like_user')
 
     def get_absolute_url(self):
+        from .views import question
         return reverse(question, args=[str(self.id)])
-
 
 
 class Answer(models.Model):

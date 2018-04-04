@@ -1,10 +1,9 @@
 from django.shortcuts import render
 
-from .models import Question as Q
-
-# Create your views here.
-
 from django.http import HttpResponse
+
+
+from .models import Question as Q
 
 
 def test(request, *args, **kwargs):

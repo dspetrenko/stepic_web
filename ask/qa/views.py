@@ -14,7 +14,8 @@ def test(request, *args, **kwargs):
 def main(request):
     page = request.GET.get('page')
 
-    qul = Q.objects.all()
+    qul = Q.objects.new()
+
     context = {
         'questions_list': qul,
     }

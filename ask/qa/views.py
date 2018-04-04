@@ -42,7 +42,7 @@ def popular(request):
 
 def question(request, question_id):
 
-    q = get_object_or_404(Q, id=question_id)
+    q = get_object_or_404(Q, id=int(question_id))
     context = {
         'question': q,
     }

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 
 from django.http import HttpResponse
 
@@ -39,6 +40,10 @@ def popular(request):
     return render(request, 'questions.html', context=context)
 
 
+def question(request, question_id):
 
-def question(request, id):
-    return HttpResponse('OK')
+    q = get_object_or_404(Q, id=question_id)
+    context = {
+        'question': q,
+    }
+    return render(request, 'question.html', context=context)

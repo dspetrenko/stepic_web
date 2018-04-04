@@ -8,13 +8,12 @@
 
     <table title="Questions">
         <tr bgcolor = '808080'>
-            <td>Name</td>
-            <td>Balance</td>
+            <td>Title</td>
         </tr>
         {% if questions_list %}
         {% for q in questions_list %}
             <tr>
-                <td> <a href="/question/{{q.get_absolute_url }}/" title="">{{q.title}}</a> </td>
+                <td> <a href="{{q.get_absolute_url }}" title="">{{q.title}}</a> </td>
             </tr>
         {% endfor %}
         {% else %}

@@ -27,9 +27,17 @@ def main(request):
 
 
 def popular(request):
-    page = request.GET.get('page')
+    page_number = request.GET.get('page', 1)
 
-    return HttpResponse('OK\tpage={}'.format(page))
+    limit = 10
+    paginator = Paginator(Q.objects.popular(), limit)
+    questions_list = paginator.get_page(page_number)
+
+    context = {
+        'questions_list': questions_list,
+    }
+    return render(request, 'questions.html', context=context)
+
 
 
 def question(request, id):

@@ -49,3 +49,7 @@ def question(request, question_id):
         'answers': A.objects.filter(question=q)
     }
     return render(request, 'question.html', context=context)
+
+
+def ask(request):
+    return HttpResponse('It is in dev now.')

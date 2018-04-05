@@ -4,6 +4,7 @@ from .views import test
 from .views import main
 from .views import popular
 from .views import question
+from .views import ask
 
 
 urlpatterns = [
@@ -12,7 +13,7 @@ urlpatterns = [
     path('login/', test),
     path('signup/', test),
     path('question/<int:question_id>/', question),
-    path('ask/', test),
+    path('ask/', ask),
     path('popular/', test),
     path('new/', test),
 ]

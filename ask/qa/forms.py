@@ -6,7 +6,6 @@ from django.forms import ModelForm
 from .models import Question, Answer
 
 
-
 """
 В файле qa/forms.py  создайте следующие формы для добавления вопроса и ответа.
 

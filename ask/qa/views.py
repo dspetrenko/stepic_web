@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from .models import Question as Q
 from .models import Answer as A
 
-from .forms import AskForm
+from .forms import AskForm, AnswerForm
 
 
 def test(request, *args, **kwargs):
@@ -47,8 +47,24 @@ def popular(request):
 def question(request, question_id):
 
     q = get_object_or_404(Q, id=int(question_id))
+
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            from django.contrib.auth.models import User
+
+            answer.author = User.objects.get(id=1)
+
+            answer.save()
+            return HttpResponseRedirect(answer.question.get_absolute_url())
+
+    else:
+        form = AnswerForm()
+
     context = {
         'question': q,
+        'form': form,
         'answers': A.objects.filter(question=q)
     }
     return render(request, 'question.html', context=context)

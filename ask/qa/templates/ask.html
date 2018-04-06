@@ -5,6 +5,11 @@
     <title>Ask</title>
 </head>
 <body>
-    {{form.as_p}}
+<form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Ask</button>
+    </form>
+
 </body>
 </html>

@@ -76,5 +76,4 @@ def ask(request):
         'form': form,
     }
 
-    # return HttpResponse('It is in dev now.')
     return render(request, 'ask.html', context=context)

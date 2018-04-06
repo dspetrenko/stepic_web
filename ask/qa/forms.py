@@ -47,3 +47,11 @@ class AskForm(ModelForm):
             'text',
         ]
 
+
+class AnswerForm(ModelForm):
+    class Meta:
+        model = Answer
+        fields = [
+            'question',
+            'text',
+        ]

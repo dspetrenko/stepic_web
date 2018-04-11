@@ -6,14 +6,37 @@ from django.http import HttpResponseRedirect
 
 from django.core.paginator import Paginator
 
+from django.contrib.auth.models import User
+
+from django.urls import reverse
+
 from .models import Question as Q
 from .models import Answer as A
 
 from .forms import AskForm, AnswerForm
 
+from .forms import Signupform
+
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = Signupform(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            User.objects.create_user(username=username, email=email, password=password)
+
+            return HttpResponseRedirect(reverse(main))
+    else:
+        form = Signupform()
+
+    render(request, 'signup.html', context={'form': form})
 
 
 def main(request):

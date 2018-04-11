@@ -36,7 +36,7 @@ def signup(request):
     else:
         form = Signupform()
 
-    render(request, 'signup.html', context={'form': form})
+    return render(request, 'signup.html', context={'form': form})
 
 
 def main(request):

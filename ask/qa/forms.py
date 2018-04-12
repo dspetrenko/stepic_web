@@ -35,3 +35,9 @@ class Signupform(Form):
     username = CharField()
     email = CharField()
     password = CharField(widget=PasswordInputWidget)
+
+
+class LoginForm(Form):
+
+    username = CharField()
+    password = CharField(widget=PasswordInputWidget)

@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect
 
 from django.core.paginator import Paginator
 
+from django.contrib.auth import login, authenticate
+
 from django.contrib.auth.models import User
 
 from django.urls import reverse
@@ -16,6 +18,7 @@ from .models import Answer as A
 from .forms import AskForm, AnswerForm
 
 from .forms import Signupform
+from .forms import LoginForm
 
 
 def test(request, *args, **kwargs):
@@ -37,6 +40,28 @@ def signup(request):
         form = Signupform()
 
     return render(request, 'signup.html', context={'form': form})
+
+
+def login_view(request):
+
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse(main))
+
+            else:
+                form.add_error('', "Your username and password didn't match. Please try again.")
+
+    else:
+        form = LoginForm()
+
+    return render(request, 'login.html', context={'form': form})
 
 
 def main(request):

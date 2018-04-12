@@ -33,7 +33,8 @@ def signup(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
 
-            User.objects.create_user(username=username, email=email, password=password)
+            user = User.objects.create_user(username=username, email=email, password=password)
+            login(request, user=user)
 
             return HttpResponseRedirect(reverse(main))
     else:

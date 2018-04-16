@@ -133,7 +133,10 @@ def ask(request):
 
             from django.contrib.auth.models import User
 
-            new_question.author = User.objects.get(id=1)
+            if request.user.is_authenticated:
+                new_question.author = request.user
+            else:
+                new_question.author = User.objects.get(id=1)
             new_question.save()
 
             return HttpResponseRedirect(new_question.get_absolute_url())

@@ -99,11 +99,15 @@ def question(request, question_id):
 
     if request.method == 'POST':
         form = AnswerForm(request.POST)
+
         if form.is_valid():
             answer = form.save(commit=False)
             from django.contrib.auth.models import User
 
-            answer.author = User.objects.get(id=1)
+            if request.user.is_authenticated:
+                answer.author = request.user
+            else:
+                answer.author = User.objects.get(id=1)
 
             answer.save()
             return HttpResponseRedirect(answer.question.get_absolute_url())
